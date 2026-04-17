@@ -8,22 +8,20 @@ app.use(express.json());
 
 let tasks = [];
 
-// GET all tasks
+// GET tasks
 app.get("/tasks", (req, res) => {
   res.json(tasks);
 });
 
-// POST new task
+// POST task
 app.post("/tasks", (req, res) => {
-  const task = req.body.task;
-  tasks.push(task);
+  tasks.push(req.body.task);
   res.json({ message: "Task added" });
 });
 
 // DELETE task
 app.delete("/tasks/:index", (req, res) => {
-  const index = req.params.index;
-  tasks.splice(index, 1);
+  tasks.splice(req.params.index, 1);
   res.json({ message: "Task deleted" });
 });
 

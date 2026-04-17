@@ -1,6 +1,6 @@
 const API = "http://localhost:3000/tasks";
 
-// Fetch tasks from backend
+// Fetch tasks
 async function fetchTasks() {
   const res = await fetch(API);
   const data = await res.json();
@@ -10,7 +10,15 @@ async function fetchTasks() {
 
   data.forEach((task, index) => {
     let li = document.createElement("li");
-    li.textContent = task;
+
+    let span = document.createElement("span");
+    span.textContent = task;
+
+    // Mark as complete
+    span.onclick = () => {
+      span.style.textDecoration = "line-through";
+      span.style.color = "gray";
+    };
 
     let btn = document.createElement("button");
     btn.textContent = "Delete";
@@ -20,12 +28,13 @@ async function fetchTasks() {
       fetchTasks();
     };
 
+    li.appendChild(span);
     li.appendChild(btn);
     list.appendChild(li);
   });
 }
 
-// Add task to backend
+// Add task
 async function addTask() {
   let input = document.getElementById("taskInput");
 
@@ -43,5 +52,5 @@ async function addTask() {
   fetchTasks();
 }
 
-// Load tasks on page load
+// Load tasks
 fetchTasks();

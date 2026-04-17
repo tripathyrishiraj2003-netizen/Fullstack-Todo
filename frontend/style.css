@@ -9,7 +9,7 @@ body {
   height: 100vh;
 }
 
-/* Main container */
+/* Container */
 .container {
   background: white;
   padding: 25px;
@@ -64,6 +64,15 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Task text */
+li span {
+  cursor: pointer;
+}
+
+li span:hover {
+  opacity: 0.7;
 }
 
 /* Delete button */
